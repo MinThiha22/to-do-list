@@ -1,29 +1,58 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./src/css/styles.css" />
     <title>To Do List</title>
+    <script>
+      const isChecked = localStorage.getItem("toggleState") === "true";
+      if (isChecked) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
   </head>
-  <body class="h-screen bg-gray-200 p-5">
-    <header class="h-40 md:h-30 max-w-6xl mx-auto py-5 px-6 md:px-8 bg-amber-200">
-      <div class="flex-col space-y-2">
-        <div>
-          <h1 class="text-3xl font-bold text-gray-800">My Tasks</h1>
+  <body class="h-screen bg-neutral-100 p-5 dark:bg-neutral-900">
+    <header class="mx-auto h-50 max-w-6xl bg-[#eaeafb] px-6 py-5 md:h-35 md:px-8 dark:bg-[#1D3E4F]">
+      <div class="mb-8 flex justify-between md:mb-4">
+        <h1 class="font-Inter text-4xl font-bold text-gray-800 dark:text-neutral-300">My Tasks</h1>
+        <img src="./assets/icons/check-list.png" alt="to-do-list" class="mr-auto ml-2 h-10 w-10" />
+        <label class="flex cursor-pointer items-center">
+          <img src="./assets/icons/sun.png" alt="sun" class="me-2 h-8 w-8" />
+          <script>
+            document.write(`<input type="checkbox"
+              class="js-toggle sr-only peer" ${isChecked ? "checked" : ""} />`);
+          </script>
+          <div
+            class="relative h-7 w-12 rounded-full bg-neutral-800 transition-all duration-300 peer-checked:bg-neutral-300 before:absolute before:top-1 before:left-1 before:h-5 before:w-5 before:rounded-full before:bg-white before:transition-all before:duration-400 peer-checked:before:translate-x-5 peer-checked:before:bg-black"
+          ></div>
+        </label>
+        <img src="./assets/icons/moon.png" alt="moon" class="ms-2 mt-2 h-6 w-6" />
+      </div>
+      <div class="flex flex-col items-center space-y-2 md:flex-row md:space-x-3">
+        <div class="flex space-x-3">
+          <span class="font-Inter text-lg font-normal text-gray-800 dark:text-neutral-300"
+            >12 tasks total</span
+          >
+          <span class="font-Inter text-lg font-normal text-green-500 dark:text-green-500"
+            >8 completed</span
+          >
         </div>
-        <div class="flex flex-col items-center space-y-2 md:flex-row md:space-x-3">
-          <div class="flex space-x-3">
-            <span>12 tasks total</span>
-            <span>8 completed</span>
-          </div>
-          <button class="bg-blue-200 w-full md:w-auto ml-0 md:ml-auto p-2 mb-2">add task</button>
-        </div>
+        <button
+          class="font-Inter mb-2 ml-0 w-full rounded-xl bg-blue-600 p-2 text-lg font-bold text-amber-50 hover:scale-110 md:ml-auto md:w-auto"
+          data-=""
+        >
+          + Add Task
+        </button>
       </div>
     </header>
 
+    <dialog></dialog>
+
     <main class=""></main>
 
-    <script src="./src/js/app.js"></script>
+    <script src="./src/js/app.js" defer></script>
   </body>
 </html>
